@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import tarfile
 from distutils import log
+
 from distutils.command.build_clib import build_clib as _build_clib
 from distutils.command.build_ext import build_ext as _build_ext
 from distutils.errors import DistutilsError
@@ -147,7 +148,9 @@ class build_clib(_build_clib):
             # configure script hasn't been generated yet
             autogen = absolute('libsecp256k1/autogen.sh')
             os.chmod(absolute(autogen), 0o755)
+
             subprocess.check_call([autogen], cwd=absolute('libsecp256k1'))
+
 
         for filename in [
             'libsecp256k1/configure',

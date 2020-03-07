@@ -168,3 +168,23 @@ int secp256k1_ec_pubkey_combine(
     const secp256k1_pubkey * const * ins,
     size_t n
 );
+
+int secp256k1_schnorr_verify(
+    const secp256k1_context* ctx,
+    const unsigned char *sig64,
+    const unsigned char *msg32,
+    const secp256k1_pubkey *pubkey
+);
+
+int secp256k1_schnorr_sign(
+    const secp256k1_context *ctx,
+    unsigned char *sig64,
+    const unsigned char *msg32,
+    const unsigned char *seckey,
+    secp256k1_nonce_function noncefp,
+    const void *ndata
+);
+
+
+
+
