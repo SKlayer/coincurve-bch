@@ -178,6 +178,7 @@ class build_clib(_build_clib):
             '--disable-dependency-tracking',
             '--with-pic',
             '--enable-module-recovery',
+            "--enable-module-schnorr",
             '--disable-jni',
             '--prefix',
             os.path.abspath(self.build_clib),
