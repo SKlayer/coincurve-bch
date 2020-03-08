@@ -27,15 +27,18 @@ class PrivateKey:
         self.context = context
         self.public_key = PublicKey.from_valid_secret(self.secret, self.context)
 
-    def sign(self, message, hasher=sha256, custom_nonce=None):
+    def sign(self, message, hasher=sha256, custom_nonce=None,schnorr=True):
         msg_hash = hasher(message) if hasher is not None else message
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
 
-        signature = ffi.new('secp256k1_ecdsa_signature *')
         nonce_fn, nonce_data = custom_nonce or DEFAULT_NONCE
-
-        signed = lib.secp256k1_ecdsa_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
+        if schnorr:
+            signature = ffi.new('unsigned char *')
+            signed = lib.secp256k1_schnorr_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
+        else:
+            signature = ffi.new('secp256k1_ecdsa_signature *')
+            signed = lib.secp256k1_ecdsa_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
 
         if not signed:
             raise ValueError('The nonce generation function failed, or the private key was invalid.')
@@ -239,12 +242,14 @@ class PublicKey:
         public_key = self.format(compressed=False)
         return bytes_to_int(public_key[1:33]), bytes_to_int(public_key[33:])
 
-    def verify(self, signature, message, hasher=sha256):
+    def verify(self, signature, message, hasher=sha256, schnorr=True):
         msg_hash = hasher(message) if hasher is not None else message
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
-
-        verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
+        if schnorr:
+            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
+        else:
+            verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
 
         # A performance hack to avoid global bool() lookup.
         return not not verified
