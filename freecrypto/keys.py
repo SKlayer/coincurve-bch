@@ -33,14 +33,19 @@ class PrivateKey:
             raise ValueError('Message hash must be 32 bytes long.')
 
         nonce_fn, nonce_data = custom_nonce or DEFAULT_NONCE
-        signature = ffi.new('secp256k1_ecdsa_signature *')
+
         if schnorr:
+            signature = ffi.new('unsigned char data[64]')
             signed = lib.secp256k1_schnorr_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
         else:
+            signature = ffi.new('secp256k1_ecdsa_signature *')
             signed = lib.secp256k1_ecdsa_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
 
         if not signed:
             raise ValueError('The nonce generation function failed, or the private key was invalid.')
+
+        if schnorr:
+            return bytes(signature)
 
         return cdata_to_der(signature, self.context)
 
@@ -246,7 +251,7 @@ class PublicKey:
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
         if schnorr:
-            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
+            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key, schnorr=True)
         else:
             verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
 

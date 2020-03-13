@@ -15,8 +15,11 @@ def cdata_to_der(cdata, context=GLOBAL_CONTEXT):
     return bytes(ffi.buffer(der, der_length[0]))
 
 
-def der_to_cdata(der, context=GLOBAL_CONTEXT):
-    cdata = ffi.new('secp256k1_ecdsa_signature *')
+def der_to_cdata(der, context=GLOBAL_CONTEXT, schnorr=False):
+    if schnorr:
+        cdata = ffi.new('unsigned char data[64]')
+    else:
+        cdata = ffi.new('secp256k1_ecdsa_signature *')
     parsed = lib.secp256k1_ecdsa_signature_parse_der(context.ctx, cdata, der, len(der))
 
     if not parsed:

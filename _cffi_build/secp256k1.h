@@ -176,13 +176,12 @@ int secp256k1_schnorr_verify(
   const secp256k1_pubkey *pubkey
 );
 
+
 int secp256k1_schnorr_sign(
   const secp256k1_context *ctx,
-  secp256k1_ecdsa_signature *sig64,
+  unsigned char *sig64,
   const unsigned char *msg32,
   const unsigned char *seckey,
   secp256k1_nonce_function noncefp,
   const void *ndata
 );
-
-
