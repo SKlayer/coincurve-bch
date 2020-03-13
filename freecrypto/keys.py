@@ -192,7 +192,7 @@ class PublicKey:
             raise ValueError(
                 'Somehow an invalid secret was used. Please '
                 'submit this as an issue here: '
-                'https://github.com/ofek/coincurve/issues/new'
+                'https://github.com/ofek/freetx/issues/new'
             )
 
         return PublicKey(public_key, context)

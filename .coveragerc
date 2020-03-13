@@ -2,7 +2,7 @@
 branch = True
 
 source =
-    coincurve
+    freetx
     tests
 
 omit =
@@ -11,9 +11,9 @@ omit =
 
 [paths]
 source =
-   coincurve
-   .tox/*/lib/python*/site-packages/coincurve
-   .tox/pypy*/site-packages/coincurve
+   freetx
+   .tox/*/lib/python*/site-packages/freetx
+   .tox/pypy*/site-packages/freetx
 
 [report]
 exclude_lines =

@@ -1,24 +1,24 @@
-Coincurve
+Freetx
 =========
 
-.. image:: https://travis-ci.org/ofek/coincurve.svg?branch=master
-    :target: https://travis-ci.org/ofek/coincurve
+.. image:: https://travis-ci.org/ofek/freetx.svg?branch=master
+    :target: https://travis-ci.org/ofek/freetx
     :alt: Travis CI
 
-.. image:: https://codecov.io/github/ofek/coincurve/coverage.svg?branch=master
-    :target: https://codecov.io/github/ofek/coincurve?branch=master
+.. image:: https://codecov.io/github/ofek/freetx/coverage.svg?branch=master
+    :target: https://codecov.io/github/ofek/freetx?branch=master
     :alt: Codecov
 
 .. image:: https://img.shields.io/pypi/status/coverage.svg
-    :target: https://pypi.org/project/coincurve
+    :target: https://pypi.org/project/freetx
     :alt: PyPI - Status
 
-.. image:: https://img.shields.io/pypi/v/coincurve.svg
-    :target: https://pypi.org/project/coincurve
+.. image:: https://img.shields.io/pypi/v/freetx.svg
+    :target: https://pypi.org/project/freetx
     :alt: PyPI - Version
 
-.. image:: https://pepy.tech/badge/coincurve
-    :target: https://pepy.tech/project/coincurve
+.. image:: https://pepy.tech/badge/freetx
+    :target: https://pepy.tech/project/freetx
     :alt: PyPI - Downloads
 
 .. image:: https://img.shields.io/badge/license-MIT%2FApache--2.0-9400d3.svg
@@ -45,42 +45,34 @@ Table of Contents
 
 Features
 --------
-
+- Schnorr signatures
 - Fastest available implementation (more than 10x faster than OpenSSL)
 - Clean, easy to use API
-- Frequent updates from `libsecp256k1 <https://github.com/bitcoin-core/secp256k1>`_ master
+- Frequent updates from `libsecp256k1 <https://github.com/Bitcoin-ABC/secp256k1/>`_ master
 - Linux, macOS, and Windows all have binary packages for both 64 and 32-bit architectures
 - Linux & macOS use GMP for faster computation
 - Deterministic signatures via `RFC 6979 <https://tools.ietf.org/html/rfc6979>`_
 - Non-malleable signatures (lower-S form) by default
-- Secure, non-malleable `ECDH implementation <https://github.com/ofek/coincurve/issues/9#issuecomment-329235214>`_
+- Secure, non-malleable `ECDH implementation <https://github.com/ofek/freetx/issues/9#issuecomment-329235214>`_
 - Implements a fix for `<https://bugs.python.org/issue28150>`_ to support Python 3.6+ on macOS
 
 Users
 -----
 
-- `<https://www.ethereum.org>`_
-- `<https://lbry.io>`_
-- `<https://libp2p.io>`_
-- `<https://zeronet.io>`_
-- `<https://ark.io>`_
-- `<https://www.augur.net>`_
-- `<https://www.nucypher.com>`_
-- `<https://raiden.network>`_
-- `<https://golem.network>`_
-- `<https://omisego.network>`_
+- `<https://https://github.com/SKlayer/freetx>`_
 
-and `many more <https://github.com/ofek/coincurve/blob/master/DOWNSTREAM.rst>`_
+
+and `many more <https://github.com/SKlayer/freetx/blob/master/DOWNSTREAM.rst>`_
 
 Installation
 ------------
 
-Coincurve is distributed on PyPI and is available on Linux/macOS and Windows and
+freetx is distributed on PyPI and is available on Linux/macOS and Windows and
 supports Python 2.7/3.5+ and PyPy3.5-v5.8.1+.
 
 .. code-block:: bash
 
-    $ pip install coincurve
+    $ pip install freetx
 
 If you are on a system that doesn't have a precompiled binary wheel (e.g. FreeBSD)
 then pip will fetch source to build yourself. You must have the necessary packages.
@@ -106,9 +98,9 @@ On macOS the necessary Homebrew packages are:
 API
 ---
 
-Coincurve provides a simple API.
+freetx provides a simple API.
 
-coincurve.verify_signature
+freetx.verify_signature
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``verify_signature(signature, message, public_key, hasher=sha256, context=GLOBAL_CONTEXT)``
@@ -121,21 +113,21 @@ Verifies some message was signed by the owner of a public key.
     - **message** (``bytes``) - The message that was supposedly signed.
     - **public_key** (``bytes``) - A public key in compressed or uncompressed form.
     - **hasher** - The hash function to use, can be ``None``. hasher(message) must return 32 bytes.
-    - **context** (``coincurve.Context``)
+    - **context** (``freetx.Context``)
 
 * Returns: ``bool``
 
-coincurve.PrivateKey
+freetx.PrivateKey
 ^^^^^^^^^^^^^^^^^^^^
 
-All instances have a ``public_key`` of type ``coincurve.PublicKey``
+All instances have a ``public_key`` of type ``freetx.PublicKey``
 
 ``PrivateKey(secret=None, context=GLOBAL_CONTEXT)``
 
 * Parameters:
 
     - **secret** (``bytes``) - The secret to use.
-    - **context** (``coincurve.Context``)
+    - **context** (``freetx.Context``)
 
 **Methods:**
 
@@ -170,7 +162,7 @@ All instances have a ``public_key`` of type ``coincurve.PublicKey``
 ``ecdh(public_key)``
 
 Computes a Diffie-Hellman secret in constant time. **Note:** This prevents malleability by returning
-``sha256(compressed_public_key)`` instead of the ``x`` coordinate directly. See `<https://github.com/ofek/coincurve/issues/9>`_.
+``sha256(compressed_public_key)`` instead of the ``x`` coordinate directly. See `<https://github.com/ofek/freetx/issues/9>`_.
 
 * Parameters:
 
@@ -185,7 +177,7 @@ Computes a Diffie-Hellman secret in constant time. **Note:** This prevents malle
     - **scalar** (``bytes``) - The scalar to add.
     - **update** (``bool``) - If ``True``, will update and return ``self``.
 
-* Returns: ``coincurve.PrivateKey``
+* Returns: ``freetx.PrivateKey``
 
 ``multiply(scalar, update=False)``
 
@@ -194,7 +186,7 @@ Computes a Diffie-Hellman secret in constant time. **Note:** This prevents malle
     - **scalar** (``bytes``) - The scalar to multiply.
     - **update** (``bool``) - If ``True``, will update and return ``self``.
 
-* Returns: ``coincurve.PrivateKey``
+* Returns: ``freetx.PrivateKey``
 
 ``to_hex()``
 
@@ -204,7 +196,7 @@ Computes a Diffie-Hellman secret in constant time. **Note:** This prevents malle
 
 ``to_der()``
 
-coincurve.PublicKey
+freetx.PublicKey
 ^^^^^^^^^^^^^^^^^^^
 
 ``PublicKey(data, context=GLOBAL_CONTEXT)``
@@ -212,7 +204,7 @@ coincurve.PublicKey
 * Parameters:
 
     - **data** (``bytes``) - The public key in compressed or uncompressed form.
-    - **context** (``coincurve.Context``)
+    - **context** (``freetx.Context``)
 
 **Methods:**
 
@@ -228,10 +220,10 @@ coincurve.PublicKey
 
 * Parameters:
 
-    - **public_keys** (``list``) - A ``list`` of ``coincurve.PublicKey`` to add.
-    - **context** (``coincurve.Context``)
+    - **public_keys** (``list``) - A ``list`` of ``freetx.PublicKey`` to add.
+    - **context** (``freetx.Context``)
 
-* Returns: ``coincurve.PublicKey``
+* Returns: ``freetx.PublicKey``
 
 ``format(compressed=True)``
 
@@ -264,7 +256,7 @@ Verifies some message was signed by the owner of this public key.
     - **scalar** (``bytes``) - The scalar to add.
     - **update** (``bool``) - If ``True``, will update and return ``self``.
 
-* Returns: ``coincurve.PublicKey``
+* Returns: ``freetx.PublicKey``
 
 ``multiply(scalar, update=False)``
 
@@ -273,21 +265,21 @@ Verifies some message was signed by the owner of this public key.
     - **scalar** (``bytes``) - The scalar to multiply.
     - **update** (``bool``) - If ``True``, will update and return ``self``.
 
-* Returns: ``coincurve.PublicKey``
+* Returns: ``freetx.PublicKey``
 
 ``combine(public_keys, update=False)``
 
 * Parameters:
 
-    - **public_keys** (``list``) - A ``list`` of ``coincurve.PublicKey`` to add.
+    - **public_keys** (``list``) - A ``list`` of ``freetx.PublicKey`` to add.
     - **update** (``bool``) - If ``True``, will update and return ``self``.
 
-* Returns: ``coincurve.PublicKey``
+* Returns: ``freetx.PublicKey``
 
 License
 -------
 
-Coincurve is distributed under the terms of both
+freetx is distributed under the terms of both
 
 - `Apache License, Version 2.0 <https://choosealicense.com/licenses/apache-2.0>`_
 - `MIT License <https://choosealicense.com/licenses/mit>`_
@@ -299,7 +291,7 @@ Credits
 
 - Contributors of `libsecp256k1 <https://github.com/bitcoin-core/secp256k1>`_.
 - Contributors of `secp256k1-py <https://github.com/ludbb/secp256k1-py>`_.
-  While Coincurve is nearly a complete rewrite, much of the build system
+  While freetx is nearly a complete rewrite, much of the build system
   provided by `ulope <https://github.com/ulope>`_ remains.
 
 History
@@ -346,4 +338,4 @@ Important changes are emphasized.
 - Fixed wheels for macOS
 - **Breaking:** Drop support for 32-bit macOS
 
-View `all history <https://github.com/ofek/coincurve/blob/master/HISTORY.rst>`_
+View `all history <https://github.com/ofek/freetx/blob/master/HISTORY.rst>`_

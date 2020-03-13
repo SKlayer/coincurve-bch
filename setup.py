@@ -265,8 +265,8 @@ setup(
     author_email='ofekmeister@gmail.com',
     maintainer='Ofek Lev',
     maintainer_email='ofekmeister@gmail.com',
-    url='https://github.com/ofek/coincurve',
-    download_url='https://github.com/ofek/coincurve',
+    url='https://github.com/ofek/freetx',
+    download_url='https://github.com/ofek/freetx',
     license='MIT or Apache-2.0',
 
     install_requires=['asn1crypto', 'cffi>=1.3.0'],
