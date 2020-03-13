@@ -2,7 +2,7 @@ from os import urandom
 
 import pytest
 
-from coincurve.utils import (
+from freecrypto.utils import (
     GROUP_ORDER,
     ZERO,
     bytes_to_hex,

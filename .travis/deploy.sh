@@ -30,10 +30,10 @@ else
             --check-archs \
             --wheel-dir fixed_wheels/ \
             --verbose \
-            dist_wheels/coincurve*.whl
+            dist_wheels/freecrypto*.whl
         # Move the fixed wheel into dist/.
         [ -d dist/ ] || mkdir dist/
-        mv fixed_wheels/coincurve*.whl dist/
+        mv fixed_wheels/freecrypto*.whl dist/
         # Clean up build directories.
         rm -fr dist_wheels/ fixed_wheels/
     fi
@@ -46,6 +46,6 @@ python -m pip install twine
 # Ignore non-existing files in globs
 shopt -s nullglob
 
-twine upload --skip-existing dist/coincurve*.{whl,gz} -u "${PYPI_USERNAME}"
+twine upload --skip-existing dist/freecrypto*.{whl,gz} -u "${PYPI_USERNAME}"
 
 set +e +x

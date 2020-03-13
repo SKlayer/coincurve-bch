@@ -27,7 +27,7 @@ for PYBIN in /opt/python/*/bin; do
 done
 
 # Adjust wheel tags
-for whl in wheelhouse/coincurve*.whl; do
+for whl in wheelhouse/freecrypto*.whl; do
     auditwheel repair "$whl" --plat $PLAT -w out
 done
 

@@ -233,7 +233,7 @@ if BUILDING_FOR_WINDOWS:
         def is_pure(self):
             return False
 
-    setup_kwargs = dict(package_data={'coincurve': ['*.dll']}, include_package_data=True)
+    setup_kwargs = dict(package_data={'freecrypto': ['*.dll']}, include_package_data=True)
 else:
 
     class Distribution(_Distribution):
@@ -242,7 +242,7 @@ else:
 
     setup_kwargs = dict(
         setup_requires=['cffi>=1.3.0', 'requests'],
-        ext_package='coincurve',
+        ext_package='freecrypto',
         cffi_modules=['_cffi_build/build.py:ffi'],
         cmdclass={
             'build_clib': build_clib,
@@ -256,7 +256,7 @@ else:
 
 
 setup(
-    name='coincurve',
+    name='freecrypto',
     version='13.0.0',
 
     description='Cross-platform Python CFFI bindings for libsecp256k1',

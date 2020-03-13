@@ -100,5 +100,5 @@ deploy:
     skip_cleanup: true
     script: .travis/deploy.sh
     on:
-      repo: ofek/coincurve
+      repo: ofek/freecrypto
       tags: true

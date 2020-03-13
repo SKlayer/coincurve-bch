@@ -3,9 +3,9 @@ from os import urandom
 
 import pytest
 
-from coincurve.ecdsa import deserialize_recoverable, recover
-from coincurve.keys import PrivateKey, PublicKey
-from coincurve.utils import bytes_to_int, int_to_bytes_padded, verify_signature
+from freecrypto.ecdsa import deserialize_recoverable, recover
+from freecrypto.keys import PrivateKey, PublicKey
+from freecrypto.utils import bytes_to_int, int_to_bytes_padded, verify_signature
 from .samples import (
     PRIVATE_KEY_BYTES,
     PRIVATE_KEY_DER,

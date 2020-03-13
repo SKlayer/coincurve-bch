@@ -1,4 +1,4 @@
-from coincurve import PrivateKey, PublicKey, verify_signature
+from freecrypto import PrivateKey, PublicKey, verify_signature
 from .samples import PRIVATE_KEY_BYTES, PUBLIC_KEY_COMPRESSED, MESSAGE, SIGNATURE
 
 

@@ -1,9 +1,9 @@
 from asn1crypto.keys import ECDomainParameters, ECPointBitString, ECPrivateKey, PrivateKeyAlgorithm, PrivateKeyInfo
 
-from coincurve.context import GLOBAL_CONTEXT
-from coincurve.ecdsa import cdata_to_der, der_to_cdata, deserialize_recoverable, recover, serialize_recoverable
-from coincurve.flags import EC_COMPRESSED, EC_UNCOMPRESSED
-from coincurve.utils import (
+from freecrypto.context import GLOBAL_CONTEXT
+from freecrypto.ecdsa import cdata_to_der, der_to_cdata, deserialize_recoverable, recover, serialize_recoverable
+from freecrypto.flags import EC_COMPRESSED, EC_UNCOMPRESSED
+from freecrypto.utils import (
     bytes_to_hex,
     bytes_to_int,
     der_to_pem,
@@ -33,11 +33,10 @@ class PrivateKey:
             raise ValueError('Message hash must be 32 bytes long.')
 
         nonce_fn, nonce_data = custom_nonce or DEFAULT_NONCE
+        signature = ffi.new('secp256k1_ecdsa_signature *')
         if schnorr:
-            signature = ffi.new('unsigned char *')
             signed = lib.secp256k1_schnorr_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
         else:
-            signature = ffi.new('secp256k1_ecdsa_signature *')
             signed = lib.secp256k1_ecdsa_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
 
         if not signed:
