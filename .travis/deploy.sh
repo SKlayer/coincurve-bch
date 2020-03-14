@@ -47,10 +47,10 @@ ls -l dist
 shopt -s nullglob
 
 #twine upload --skip-existing dist/freecrypto*.{whl,gz} -u "${PYPI_USERNAME}"
-export GITHUB_OAUTH_TOKEN=${GITHUB_TOKEN}
-export FILES="dist/freecrypto*"
-
-curl https://github.com/liesauer/github-release-cli/releases/download/1.3.0/github-releaser-travis -L --output github-releaser && chmod +x github-releaser && ./github-releaser ${preRelease} -verbose
+#export GITHUB_OAUTH_TOKEN=${GITHUB_TOKEN}
+#export FILES="dist/freecrypto*"
+#export TagName=""
+#curl https://github.com/liesauer/github-release-cli/releases/download/1.3.0/github-releaser-travis -L --output github-releaser && chmod +x github-releaser && ./github-releaser ${preRelease} -verbose
 
 
 
