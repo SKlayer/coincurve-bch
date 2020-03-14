@@ -1,5 +1,5 @@
 import os
-
+import platform
 from cffi import FFI
 
 BASE_DEFINITIONS = """
@@ -255,4 +255,7 @@ ffi.cdef(RECOVERY_DEFINITIONS)
 ffi.cdef(ECDH_DEFINITIONS)
 
 here = os.path.dirname(os.path.abspath(__file__))
+arch = platform.uname()[4]
+
 lib = ffi.dlopen(os.path.join(here, 'libsecp256k1.dll'))
+

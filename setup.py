@@ -257,16 +257,16 @@ else:
 
 setup(
     name='freecrypto',
-    version='13.0.0',
+    version='1.0.0',
 
-    description='Cross-platform Python CFFI bindings for libsecp256k1',
+    description='Freecash Cross-platform Python CFFI bindings for libsecp256k1-schnorr',
     long_description=open('README.rst', 'r').read(),
-    author='Ofek Lev',
-    author_email='ofekmeister@gmail.com',
-    maintainer='Ofek Lev',
-    maintainer_email='ofekmeister@gmail.com',
-    url='https://github.com/ofek/freetx',
-    download_url='https://github.com/ofek/freetx',
+    author='Sklayer',
+    author_email='sklayer@qq.com',
+    maintainer='Sklayer',
+    maintainer_email='sklayer@qq.com',
+    url='https://github.com/sklayer/freetx',
+    download_url='https://github.com/sklayer/freetx',
     license='MIT or Apache-2.0',
 
     install_requires=['asn1crypto', 'cffi>=1.3.0'],
@@ -281,11 +281,11 @@ setup(
         'crypto',
         'elliptic curves',
         'bitcoin',
-        'ethereum',
+        'schnorr',
         'cryptocurrency',
     ],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'License :: OSI Approved :: Apache Software License',
