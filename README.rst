@@ -1,13 +1,9 @@
 freecrypto
-=========
+===========
 
-.. image:: https://travis-ci.org/ofek/freecrypto.svg?branch=master
-    :target: https://travis-ci.org/ofek/freecrypto
+.. image:: https://api.travis-ci.org/sklayer/freecrypto.svg?branch=master
+    :target: https://travis-ci.org/sklayer/freecrypto
     :alt: Travis CI
-
-.. image:: https://codecov.io/github/ofek/freecrypto/coverage.svg?branch=master
-    :target: https://codecov.io/github/ofek/freecrypto?branch=master
-    :alt: Codecov
 
 .. image:: https://img.shields.io/pypi/status/coverage.svg
     :target: https://pypi.org/project/freecrypto
@@ -25,16 +21,12 @@ freecrypto
     :target: https://choosealicense.com/licenses
     :alt: License: MIT/Apache-2.0
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/ambv/black
-    :alt: Code style: black
-
 -----
 
 This library provides well-tested Python CFFI bindings for
-`libsecp256k1 <https://github.com/bitcoin-core/secp256k1>`_, the heavily
-optimized C library used by `Bitcoin Core <https://github.com/bitcoin/bitcoin>`_
-for operations on elliptic curve secp256k1.
+`libsecp256k1 <https://github.com/Bitcoin-ABC/secp256k1>`_, the heavily
+optimized C library used by `Bitcoin ABC <https://github.com/Bitcoin-ABC/bitcoin-abc>`_
+for operations on elliptic curve secp256k1 schnorr sign.
 
 Table of Contents
 ~~~~~~~~~~~~~~~~~
