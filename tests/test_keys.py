@@ -19,6 +19,7 @@ from .samples import (
     MESSAGE,
     SIGNATURE,
     RECOVERABLE_SIGNATURE,
+    SIGNATURE_DER,
 )
 
 
@@ -46,7 +47,7 @@ class TestPrivateKey:
         assert verify_signature(signature, message, public_key.format(compressed=False))
 
     def test_signature_deterministic(self):
-        assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE,schnorr=False) == SIGNATURE
+        assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE,schnorr=False) == SIGNATURE_DER
 
 
     def test_signature_invalid_hasher(self):

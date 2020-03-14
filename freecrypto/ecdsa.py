@@ -24,7 +24,6 @@ def der_to_cdata(der, context=GLOBAL_CONTEXT):
 
     return cdata
 
-
 def recover(message, recover_sig, hasher=sha256, context=GLOBAL_CONTEXT):
     msg_hash = hasher(message) if hasher is not None else message
     if len(msg_hash) != 32:
