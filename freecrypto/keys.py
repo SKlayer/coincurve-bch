@@ -253,7 +253,7 @@ class PublicKey:
             raise ValueError('Message hash must be 32 bytes long.')
         if schnorr:
             verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash,
-                                                    self.public_key, schnorr=True)
+                                                    self.public_key)
         else:
             verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
 

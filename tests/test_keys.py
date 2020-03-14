@@ -40,17 +40,17 @@ class TestPrivateKey:
         public_key = private_key.public_key
 
         message = urandom(200)
-        signature = private_key.sign(message)
+        signature = private_key.sign(message,schnorr=False)
 
         assert verify_signature(signature, message, public_key.format(compressed=True))
         assert verify_signature(signature, message, public_key.format(compressed=False))
 
     def test_signature_deterministic(self):
-        assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE) == SIGNATURE
+        assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE,schnorr=False) == SIGNATURE
 
     def test_signature_invalid_hasher(self):
         with pytest.raises(ValueError):
-            PrivateKey().sign(MESSAGE, lambda x: sha512(x).digest())
+            PrivateKey().sign(MESSAGE, lambda x: sha512(x).digest(),schnorr=False)
 
     def test_signature_recoverable(self):
         private_key = PrivateKey(PRIVATE_KEY_BYTES)
@@ -132,7 +132,7 @@ class TestPublicKey:
 
     def test_verify(self):
         public_key = PublicKey(PUBLIC_KEY_COMPRESSED)
-        assert public_key.verify(SIGNATURE, MESSAGE)
+        assert public_key.verify(SIGNATURE, MESSAGE,schnorr=False)
 
     def test_transform(self):
         x = urandom(32)
