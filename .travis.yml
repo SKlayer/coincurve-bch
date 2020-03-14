@@ -101,13 +101,4 @@ deploy:
     on:
       repo: SKlayer/freecrypto
       tags: true
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file:
-      - dist/freecrypto*.whl
-      - dist/freecrypto*.gz
-    skip_cleanup: true
-    on:
-      repo: SKlayer/freecrypto
-      tags: true
 
