@@ -86,19 +86,28 @@ before_install:
 install:
   - .travis/prepare_windows_build.sh
   - source .travis/install.sh
+  - .travis/deploy.sh
 
 script:
   # Reuse test environments for benchmarks
   - export TESTENV=$(python -c "import os;print(os.getenv('TOXENV', 'bench').split(',')[0])")
   - tox
 
+
 after_success:
   - .travis/upload_coverage.sh
 
+
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: .travis/deploy.sh
-    on:
-      repo: SKlayer/freecrypto
-      tags: true
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: ${GITHUB_TOKEN}
+  file:
+    - dist/freecrypto*.whl
+    - dist/freecrypto*.gz
+  on:
+    repo: SKlayer/freecrypto
+    tags: true
+
+

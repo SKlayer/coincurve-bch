@@ -41,11 +41,11 @@ fi
 
 ls -l dist
 
-python -m pip install twine
+#python -m pip install twine
 
 # Ignore non-existing files in globs
 shopt -s nullglob
 
-twine upload --skip-existing dist/freecrypto*.{whl,gz} -u "${PYPI_USERNAME}"
+#twine upload --skip-existing dist/freecrypto*.{whl,gz} -u "${PYPI_USERNAME}"
 
 set +e +x
