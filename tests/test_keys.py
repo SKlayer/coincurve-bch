@@ -46,8 +46,8 @@ class TestPrivateKey:
         assert verify_signature(signature, message, public_key.format(compressed=False))
 
     def test_signature_deterministic(self):
-        #assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE,schnorr=False) == SIGNATURE
-        pass
+        assert PrivateKey(PRIVATE_KEY_BYTES).sign(MESSAGE,schnorr=False) == SIGNATURE
+
 
     def test_signature_invalid_hasher(self):
         with pytest.raises(ValueError):
