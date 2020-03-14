@@ -61,7 +61,7 @@ def build_flags(library, type_, path):
 
 
 def _find_lib():
-    if 'freetx_IGNORE_SYSTEM_LIB' in os.environ:
+    if 'freecrypto_IGNORE_SYSTEM_LIB' in os.environ:
         return False
 
     from cffi import FFI

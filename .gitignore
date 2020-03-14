@@ -5,7 +5,7 @@
 /.eggs
 /.idea
 /.tox
-/freetx.egg-info
+/freecrypto.egg-info
 /build
 /dist
 /docs/build

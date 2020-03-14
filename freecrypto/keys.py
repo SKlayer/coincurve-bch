@@ -27,7 +27,7 @@ class PrivateKey:
         self.context = context
         self.public_key = PublicKey.from_valid_secret(self.secret, self.context)
 
-    def sign(self, message, hasher=sha256, custom_nonce=None,schnorr=True):
+    def sign(self, message, hasher=sha256, custom_nonce=None, schnorr=True):
         msg_hash = hasher(message) if hasher is not None else message
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
@@ -36,7 +36,8 @@ class PrivateKey:
 
         if schnorr:
             signature = ffi.new('unsigned char data[64]')
-            signed = lib.secp256k1_schnorr_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
+            signed = lib.secp256k1_schnorr_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn,
+                                                nonce_data)
         else:
             signature = ffi.new('secp256k1_ecdsa_signature *')
             signed = lib.secp256k1_ecdsa_sign(self.context.ctx, signature, msg_hash, self.secret, nonce_fn, nonce_data)
@@ -192,7 +193,7 @@ class PublicKey:
             raise ValueError(
                 'Somehow an invalid secret was used. Please '
                 'submit this as an issue here: '
-                'https://github.com/ofek/freetx/issues/new'
+                'https://github.com/ofek/freecrypto/issues/new'
             )
 
         return PublicKey(public_key, context)
@@ -251,7 +252,8 @@ class PublicKey:
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
         if schnorr:
-            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key, schnorr=True)
+            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature), msg_hash,
+                                                    self.public_key, schnorr=True)
         else:
             verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
 

@@ -36,7 +36,7 @@ Users
 - `Ocean Protocol <https://github.com/oceanprotocol/squid-py/blob/45e1ceada45934a593022ca96bec552e8beb6051/Pipfile#L14>`_
 - `OmiseGO <https://github.com/omisego/fee-burner/blob/984f75362ca193680ecb4dc43c7d2e13f3be68bd/contracts/requirements.txt#L9>`_
 - `PeerAssets <https://github.com/PeerAssets/pypeerassets/commit/113c9a234c94499c7e591b8a93928be0a77298fa>`_
-- `Planetarium <https://github.com/planetarium/freetx-stubs>`_
+- `Planetarium <https://github.com/planetarium/freecrypto-stubs>`_
 - `python-idex <https://github.com/sammchardy/python-idex/blob/3b698533e290a0fe884961ce69c4b2e699378b8d/requirements.txt#L2>`_
 - `PyWallet <https://github.com/AndreMiras/PyWallet/commit/69f2f240b39f332123d347c72bc75f0b199813c1>`_
 - `Quantstamp <https://github.com/quantstamp/qsp-protocol-node/blob/6abadfeef4c80d8a246e3676ed7238e290edf050/requirements.txt#L32>`_

@@ -265,8 +265,8 @@ setup(
     author_email='sklayer@qq.com',
     maintainer='Sklayer',
     maintainer_email='sklayer@qq.com',
-    url='https://github.com/sklayer/freetx',
-    download_url='https://github.com/sklayer/freetx',
+    url='https://github.com/sklayer/freecrypto',
+    download_url='https://github.com/sklayer/freecrypto',
     license='MIT or Apache-2.0',
 
     install_requires=['asn1crypto', 'cffi>=1.3.0'],

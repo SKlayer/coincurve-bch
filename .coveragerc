@@ -2,7 +2,7 @@
 branch = True
 
 source =
-    freetx
+    freecrypto
     tests
 
 omit =
@@ -11,9 +11,9 @@ omit =
 
 [paths]
 source =
-   freetx
-   .tox/*/lib/python*/site-packages/freetx
-   .tox/pypy*/site-packages/freetx
+   freecrypto
+   .tox/*/lib/python*/site-packages/freecrypto
+   .tox/pypy*/site-packages/freecrypto
 
 [report]
 exclude_lines =
