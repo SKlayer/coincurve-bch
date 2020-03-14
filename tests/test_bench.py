@@ -49,4 +49,4 @@ def test_public_key_point(benchmark):
 
 def test_public_key_verify(benchmark):
     public_key = PublicKey(PUBLIC_KEY_COMPRESSED)
-    benchmark(public_key.verify, SIGNATURE, MESSAGE)
+    benchmark(public_key.verify, SIGNATURE, MESSAGE,schnorr=False)
