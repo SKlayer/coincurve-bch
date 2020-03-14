@@ -36,7 +36,7 @@ addons:
 matrix:
   include:
     - python: 3.6
-      env: TOXENV=style BUILD_LINUX_WHEELS=1
+      env: TOXENV=py36 BUILD_LINUX_WHEELS=1
       services: docker
     - python: 2.7
       env: TOXENV=py27,bench
