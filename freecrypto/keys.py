@@ -247,15 +247,17 @@ class PublicKey:
         public_key = self.format(compressed=False)
         return bytes_to_int(public_key[1:33]), bytes_to_int(public_key[33:])
 
-    def verify(self, signature, message, hasher=sha256, schnorr=True):
+    def verify(self, signature, message, hasher=sha256, schnorr=False):
         msg_hash = hasher(message) if hasher is not None else message
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
+        if len(signature) != 64 and schnorr:
+            raise ValueError('Schnorr signature must be 64 bytes long.')
         if schnorr:
-            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature, schnorr=schnorr), msg_hash,
-                                                    self.public_key)
+            verified = lib.secp256k1_schnorr_verify(self.context.ctx, signature, msg_hash, self.public_key)
         else:
-            verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature, schnorr=schnorr), msg_hash, self.public_key)
+            verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature, schnorr=schnorr), msg_hash,
+                                                  self.public_key)
 
         # A performance hack to avoid global bool() lookup.
         return not not verified
