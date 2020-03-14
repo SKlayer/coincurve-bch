@@ -252,10 +252,10 @@ class PublicKey:
         if len(msg_hash) != 32:
             raise ValueError('Message hash must be 32 bytes long.')
         if schnorr:
-            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature, schnorr=False), msg_hash,
+            verified = lib.secp256k1_schnorr_verify(self.context.ctx, der_to_cdata(signature, schnorr=schnorr), msg_hash,
                                                     self.public_key)
         else:
-            verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature), msg_hash, self.public_key)
+            verified = lib.secp256k1_ecdsa_verify(self.context.ctx, der_to_cdata(signature, schnorr=schnorr), msg_hash, self.public_key)
 
         # A performance hack to avoid global bool() lookup.
         return not not verified
